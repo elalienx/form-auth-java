@@ -3,7 +3,7 @@ import { useState } from "react";
 
 export default function SignUp() {
   // Local state
-  const [form, setForm] = useState({ email: "", pass: "" });
+  const [form, setForm] = useState({ name: "", email: "", pass: "" });
 
   // Properties
   const END_POINT = "http://localhost:8000";
@@ -12,7 +12,7 @@ export default function SignUp() {
 
   // Methods
   function onSubmit(event) {
-    console.log("Sending...", form);
+    console.log("Creating user account with:", form);
     event.preventDefault();
     fetch(END_POINT, {
       method: METHOD,
@@ -33,21 +33,30 @@ export default function SignUp() {
 
   return (
     <div>
-      <h1>Login page</h1>
+      <h1>Create an account</h1>
       <form onSubmit={onSubmit}>
+        <input
+          type="name"
+          placeholder="Full name"
+          value={form.name}
+          onChange={(event) => setForm({ ...form, name: event.target.value })}
+        />
+        <br />
         <input
           type="email"
           placeholder="Email"
           value={form.email}
           onChange={(event) => setForm({ ...form, email: event.target.value })}
         />
+        <br />
         <input
           type="password"
           placeholder="Password (minimum 8 characters)"
           value={form.pass}
           onChange={(event) => setForm({ ...form, pass: event.target.value })}
         />
-        <button>Login!</button>
+        <br />
+        <button>Create account</button>
       </form>
     </div>
   );

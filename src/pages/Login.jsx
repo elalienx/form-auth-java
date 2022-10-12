@@ -12,7 +12,7 @@ export default function Login() {
 
   // Methods
   function onSubmit(event) {
-    console.log("Sending...", form);
+    console.log("Trying to login using:", form);
     event.preventDefault();
     fetch(END_POINT, {
       method: METHOD,
@@ -41,13 +41,15 @@ export default function Login() {
           value={form.email}
           onChange={(event) => setForm({ ...form, email: event.target.value })}
         />
+        <br />
         <input
           type="password"
           placeholder="Password (minimum 8 characters)"
           value={form.pass}
           onChange={(event) => setForm({ ...form, pass: event.target.value })}
         />
-        <button>Login!</button>
+        <br />
+        <button>Login</button>
       </form>
     </div>
   );

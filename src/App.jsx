@@ -1,54 +1,21 @@
 // Node modules
-import { useState } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-export default function Home() {
-  // Local state
-  const [form, setForm] = useState({ email: "", pass: "" });
+// Project files
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import SignUp from "./pages/SignUp";
 
-  // Properties
-  const END_POINT = "http://localhost:8000";
-  const METHOD = "POST";
-  const HEADERS = {}; // add any security if needed
-
-  // Methods
-  function onSubmit(event) {
-    console.log("Sending...", form);
-    event.preventDefault();
-    fetch(END_POINT, {
-      method: METHOD,
-      headers: HEADERS,
-      body: JSON.stringify(form),
-    })
-      .then((response) => onSuccess(response))
-      .catch((error) => onFailure(error));
-  }
-
-  function onSuccess(response) {
-    console.log(response);
-  }
-
-  function onFailure(error) {
-    console.error(error);
-  }
-
+export default function App() {
   return (
-    <div>
-      <h1>Login page</h1>
-      <form onSubmit={onSubmit}>
-        <input
-          type="email"
-          placeholder="Email"
-          value={form.email}
-          onChange={(event) => setForm({ ...form, email: event.target.value })}
-        />
-        <input
-          type="password"
-          placeholder="Password (minimum 8 characters)"
-          value={form.pass}
-          onChange={(event) => setForm({ ...form, pass: event.target.value })}
-        />
-        <button>Login!</button>
-      </form>
+    <div className="App">
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/sign-up" element={<SignUp />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
