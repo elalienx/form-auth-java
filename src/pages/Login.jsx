@@ -2,10 +2,16 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+// Project files
+import { useUser } from "../global-state/UserProvider";
+
 export default function Login() {
+  // Global state
+  const navigate = useNavigate();
+  const { setUser } = useUser();
+
   // Local state
   const [form, setForm] = useState({ email: "", pass: "" });
-  const navigate = useNavigate();
 
   // Properties
   const END_POINT = "http://localhost:8000";
@@ -27,6 +33,7 @@ export default function Login() {
 
   function onSuccess(response) {
     console.log(response);
+    setUser(response.data);
     navigate("/"); // go to home after a susscesfull login
   }
 

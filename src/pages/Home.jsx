@@ -8,10 +8,8 @@ export default function Home() {
   // Properties
   const isLogged = user !== null;
 
-  console.log(user);
-
   // Components
-  const logged = <p>You are currently logged in! ✅</p>;
+  const logged = <p>Hello {user?.name} are currently logged in! ✅</p>;
   const notLoged = <p>You are NOT logged! ❌</p>;
 
   return (
