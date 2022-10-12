@@ -1,7 +1,11 @@
 // Node modules
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function SignUp() {
+  // Global state
+  const navigate = useNavigate();
+
   // Local state
   const [form, setForm] = useState({ name: "", email: "", pass: "" });
 
@@ -25,6 +29,7 @@ export default function SignUp() {
 
   function onSuccess(response) {
     console.log(response);
+    navigate("/"); // go to home after a susscesfull account creation
   }
 
   function onFailure(error) {

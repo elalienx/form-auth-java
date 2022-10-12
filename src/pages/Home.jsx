@@ -1,7 +1,23 @@
+// Project files
+import { useUser } from "../global-state/UserProvider";
+
 export default function Home() {
+  // Global state
+  const { user } = useUser();
+
+  // Properties
+  const isLogged = user !== {};
+
+  console.log(user);
+
+  // Components
+  const logged = <p>You are currently logged in! ✅</p>;
+  const notLoged = <p>You are NOT logged! ❌</p>;
+
   return (
     <div>
       <h1>Home page</h1>
+      {isLogged ? logged : notLoged}
       <p>
         This project is a quick test to know how to built a simple
         authentification system on Spring Boot.

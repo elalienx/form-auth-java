@@ -1,9 +1,11 @@
 // Node modules
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   // Local state
   const [form, setForm] = useState({ email: "", pass: "" });
+  const navigate = useNavigate();
 
   // Properties
   const END_POINT = "http://localhost:8000";
@@ -25,6 +27,7 @@ export default function Login() {
 
   function onSuccess(response) {
     console.log(response);
+    navigate("/"); // go to home after a susscesfull login
   }
 
   function onFailure(error) {
