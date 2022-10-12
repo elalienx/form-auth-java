@@ -6,7 +6,7 @@ export default function Home() {
   const { user } = useUser();
 
   // Properties
-  const isLogged = user !== {};
+  const isLogged = user !== null;
 
   console.log(user);
 
